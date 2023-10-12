@@ -13,7 +13,7 @@ spec:
   project: tournament-prod
   source:
     repoURL: git@github.com:ThomasHerve/tournament-helm.git
-    path: root-app
+    path: root-app/prod
     targetRevision: main
   syncPolicy:
     automated:
