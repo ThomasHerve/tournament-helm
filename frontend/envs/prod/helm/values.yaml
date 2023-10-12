@@ -1,3 +1,8 @@
 namespace: tournament-prod
 ingress:
   enabled: true
+image:
+  repository: thomasherve/tournament-frontend
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"

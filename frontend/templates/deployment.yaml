@@ -20,10 +20,8 @@ spec:
       labels:
         {{- include "frontend.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      - name: {{ .Values.imagePullSecrets.name }}
       serviceAccountName: {{ include "frontend.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -31,10 +29,19 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          volumeMounts:
+            - name: certs
+              mountPath: /etc/ssl/bundle.crt
+              subPath: bundle
+              readOnly: true
+            - name: certs
+              mountPath: /etc/ssl/private.key
+              subPath: private
+              readOnly: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: http
+            - name: https
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
@@ -59,3 +66,13 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - name: php
+        configMap:
+          name: "certs"
+          items:
+          - key: bundle
+            path: bundle
+          - key: private
+            path: private
+

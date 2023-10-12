@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: certs
+  namespace: {{ .Values.namespace }}
+data:
+  bundle: {{ .Values.certs.certificate }}{{ .Values.certs.ca_bundle }}
+  private: {{ .Values.certs.private }}
