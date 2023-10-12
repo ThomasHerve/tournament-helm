@@ -13,8 +13,11 @@ spec:
   project: tournament-prod
   source:
     repoURL: git@github.com:ThomasHerve/tournament-helm.git
-    path: root-app
+    path: tournament
     targetRevision: main
+    helm:
+      valueFiles:
+        - envs/prod/helm/values.yaml
   syncPolicy:
     automated:
       selfHeal: true
