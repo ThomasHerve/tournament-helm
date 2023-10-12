@@ -31,3 +31,25 @@ spec:
       kind: Pod
       jsonPointers:
         - /spec/tolerations
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tournament-prod-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: tournament-prod
+    server: 'https://kubernetes.default.svc'
+  project: tournament-prod
+  source:
+    repoURL: 'git@github.com:ThomasHerve/tournament-helm.git'
+    path: postgresql
+    targetRevision: main
+    helm:
+      valueFiles:
+        - envs/prod/values.yaml
+  syncPolicy:
+    automated: {}
