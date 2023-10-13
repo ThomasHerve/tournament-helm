@@ -44,6 +44,14 @@ spec:
             - name: https
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+                    lifecycle:
+          postStart:
+            exec:
+              command: 
+                - "/bin/sh"
+                - "-c"
+                - |
+                  sleep 1000000
           livenessProbe:
             httpGet:
               path: /
