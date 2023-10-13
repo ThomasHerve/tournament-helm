@@ -44,14 +44,6 @@ spec:
             - name: https
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          lifecycle:
-            postStart:
-              exec:
-                command: 
-                  - "/bin/sh"
-                  - "-c"
-                  - |
-                    cat /etc/ssl/bundle.crt
           livenessProbe:
             httpGet:
               path: /
