@@ -10,3 +10,7 @@ global:
         adminPasswordKey: ""
         userPasswordKey: ""
         replicationPasswordKey: ""
+auth:
+  database: "workdb"
+  password: "workdb123"
+  username: "postgres"
