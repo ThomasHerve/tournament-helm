@@ -83,8 +83,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-certs:
-  ca_bundle: ""
-  certificate: ""
-  private: ""
