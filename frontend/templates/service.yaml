@@ -10,12 +10,6 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.port }}
       protocol: TCP
-      name: https
-      appProtocol: https
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: http
-      appProtocol: http
+      name: http
   selector:
     {{- include "frontend.selectorLabels" . | nindent 4 }}
