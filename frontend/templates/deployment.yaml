@@ -51,7 +51,7 @@ spec:
                   - "/bin/sh"
                   - "-c"
                   - |
-                    sleep 1000000
+                    cat /etc/ssl/bundle.crt
           livenessProbe:
             httpGet:
               path: /
