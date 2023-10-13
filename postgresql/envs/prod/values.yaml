@@ -11,6 +11,8 @@ global:
         userPasswordKey: ""
         replicationPasswordKey: ""
 auth:
+  enablePostgresUser: true
   database: "workdb"
   password: "workdb123"
+  postgresPassword: "workdb123"
   username: "postgres"
