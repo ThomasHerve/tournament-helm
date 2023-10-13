@@ -5,5 +5,14 @@ metadata:
   name: certs
   namespace: {{ .Values.namespace }}
 data:
-  bundle: {{ .Values.certs.certificate }}{{ .Values.certs.ca_bundle }}
-  private: {{ .Values.certs.private }}
+  bundle: |
+    -----BEGIN CERTIFICATE-----
+    {{ .Values.certs.certificate }}
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    {{ .Values.certs.ca_bundle }}
+    -----END CERTIFICATE-----
+  private: |
+    -----BEGIN RSA PRIVATE KEY-----
+    {{ .Values.certs.private }}
+    -----END RSA PRIVATE KEY-----
