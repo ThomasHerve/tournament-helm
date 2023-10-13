@@ -4,6 +4,7 @@ metadata:
   name: pv # Sets PV name
 spec:
   storageClassName: manual
+  persistentVolumeReclaimPolicy: Retain
   capacity:
     storage: 20Gi # Sets PV's size
   accessModes:
@@ -13,8 +14,8 @@ spec:
 nodeAffinity:
   required:
     nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-            - vps-732943eb
+    - matchExpressions:
+      - key: kubernetes.io/hostname
+        operator: In
+        values:
+        - vps-732943eb
