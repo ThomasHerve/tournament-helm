@@ -4,6 +4,10 @@ metadata:
   name: {{ include "tournament.fullname" . }}
   labels:
     {{- include "tournament.labels" . | nindent 4 }}
+  annotations:
+      keel.sh/policy: force
+      keel.sh/trigger: poll      
+      keel.sh/pollSchedule: "@every 10m"
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
