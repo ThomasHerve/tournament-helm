@@ -84,4 +84,4 @@ tolerations: []
 
 affinity: {}
 
-namespace: tournament
+namespace: tournament-prod
