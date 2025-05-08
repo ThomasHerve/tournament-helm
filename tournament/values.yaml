@@ -49,6 +49,7 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
     - host: backend.multiplayertournamentonline.fr
       paths:
